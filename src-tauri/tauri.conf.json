@@ -1,54 +1,38 @@
 {
+  "productName": "tafseel",
+  "version": "0.1.0",
+  "identifier": "com.tauri.dev",
+  "$schema": "../../core/tauri-config-schema/schema.json",
   "build": {
-    "beforeDevCommand": "pnpm dev",
-    "beforeBuildCommand": "pnpm build",
-    "devPath": "http://localhost:1420",
-    "distDir": "../dist",
-    "withGlobalTauri": false
+    "beforeDevCommand": "yarn dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "yarn build",
+    "frontendDist": "../dist"
   },
-  "package": {
-    "productName": "tauri-supabase-oauth",
-    "version": "0.0.0"
-  },
-  "tauri": {
-    "allowlist": {
-      "all": false,
-      "shell": {
-        "all": false,
-        "open": true
-      },
-      "dialog": {
-        "all": false,
-        "ask": true,
-        "confirm": true,
-        "message": true,
-        "open": false,
-        "save": false
-      }
-    },
-    "bundle": {
-      "active": true,
-      "targets": "all",
-      "identifier": "com.github.jeanec",
-      "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
-      ]
-    },
-    "security": {
-      "csp": null
-    },
+  "app": {
+    "withGlobalTauri": true,
     "windows": [
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "tauri-supabase-oauth",
+        "title": "tafseel",
         "width": 800,
         "height": 600
       }
+    ],
+    "security": {
+      "csp": "event: default-src 'self'; connect-src ipc: http://ipc.localhost; default-src blob: data: filesystem: ws: wss: http: https: tauri: 'unsafe-eval' 'unsafe-inline' 'self' img-src: 'self'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
     ]
   }
 }

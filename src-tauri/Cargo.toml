@@ -1,22 +1,29 @@
 [package]
-name = "tauri-supabase-oauth"
-version = "0.0.0"
-description = "A Tauri App"
-authors = ["you"]
+name = "tauri-ribh"
+version = "0.0.1"
+description = "Ribh"
+authors = ["Mohamed Bennekrouf"]
 license = ""
 repository = ""
 edition = "2021"
 
+[lib]
+name = "tafseel_lib"
+path = "src/lib.rs"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
-tauri-build = { version = "1.4", features = [] }
+tauri-build = { version = "2.0.0-beta", features = [] }
 
 [dependencies]
-tauri = { version = "1.4", features = [ "dialog-message", "dialog-confirm", "dialog-ask", "shell-open"] }
+tauri = { version = "2.0.0-beta", features = [] }
+tauri-plugin-shell = "2.0.0-beta"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-tauri-plugin-oauth = { git = "https://github.com/FabianLars/tauri-plugin-oauth", branch = "main" }
+tauri-plugin-oauth = { git = "https://github.com/bennekrouf/tauri-plugin-oauth", branch = "main" }
+tauri-plugin-store = "2.0.0-beta.0"
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem

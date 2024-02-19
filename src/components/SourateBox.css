@@ -1,0 +1,24 @@
+/* SourateBox.css */
+.columnContainer {
+    padding: 3px;
+    border-radius: 5px;
+    align-self: flex-start; /* For aligning to the right in RTL */
+  }
+  
+  .leftColumn {
+    background-color: black;
+  }
+  
+  .column {
+    background-color: gray;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .columnText {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: right;
+  }
+  

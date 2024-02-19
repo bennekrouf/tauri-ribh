@@ -34,6 +34,7 @@ export default function Account({ session }: { session: AuthSession }) {
   }, [session]);
 
   async function updateProfile(event: FormEvent<HTMLFormElement>) {
+    console.log("In updateProfile");
     event.preventDefault();
 
     setLoading(true);

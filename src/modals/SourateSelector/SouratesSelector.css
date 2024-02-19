@@ -1,0 +1,25 @@
+.scroll-view {
+    overflow-y: auto;
+  }
+  
+  .container {
+    padding: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+  }
+  
+  .touchable-opacity {
+    border-radius: 20px;
+    padding: 5px;
+    margin: 5px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Additional styles may be required for focusing and active states */
+  .touchable-opacity:focus {
+    outline: none;
+  }
+  
