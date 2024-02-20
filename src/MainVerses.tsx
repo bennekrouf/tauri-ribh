@@ -1,4 +1,4 @@
-// MainVerses.js
+// import Text from 'react';
 import FormattedVerse from './FormattedVerse';
 import { Verse } from './models/Verse';
 
@@ -12,9 +12,9 @@ const MainVerses: React.FC<MainVersesProps> = ({ similars, kalima }) => {
   return (
     <div style={styles.versesContainer}>
       <h2 style={styles.headerStyle}>{kalima}</h2>
-        {similars?.map((similar:any, index:number) => (
+        {similars?.map((similar:any, index:number) => ( 
           <div key={index} style={styles.card}>
-            {/* <FormattedVerse isOpposite={false} ungroupedText={verse.ungrouped_text} /> */}
+            <FormattedVerse isOpposite={false} ungroupedText={similar} />
             <div style={styles.ayahContainer}>
               <span style={styles.ayahText}>[{similar.verse_no}]</span>
             </div>
