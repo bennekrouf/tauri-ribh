@@ -1,24 +1,26 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 
-import { writeToAsyncStorage, loadFromAsyncStorage, loadFromFirestore, syncAsyncStorageToFirestore } from 'mayo-firestore-write';
-import { UserContext, UserContextType } from 'mayo-firebase-auth';
+import loadFromSupa from './loadFromSupa';
+
 import { Logger } from 'mayo-logger';
 
 import { getBestIndex } from '../utils/getBestIndex';
 import { UserState } from '../models/UserState';
+import { loadFromStore } from './loadFromStore';
+import { writeToStore } from './writeToStore';
 
-export const useFetchUser = <T extends UserState>(initialState: T): [T, (data: T) => Promise<void>, boolean] => {
-  const [userSettings, setUserSettings] = useState<T>(null);
+export const useFetchUser = <T extends UserState>(initialState: T): [T, (data: T) => Promise<any>, boolean] => {
+  const [userSettings, setUserSettings] = useState<T>(initialState);
   const [isLoading, setLoading] = useState(false);
-  const { user } = useContext(UserContext) as UserContextType;
+  const user= { email: "mohamed.bennekrouf@gmail.com"};
 
   useEffect(() => {
     const loadData = async () => {
       try {
         setLoading(true);
-        let savedState: T | null = await loadFromAsyncStorage();
+        let savedState: T | null = await loadFromStore(user.email);
         if(!savedState) {
-          savedState = await loadFromFirestore();
+          savedState = (await loadFromSupa() as unknown) as T;
         }
         console.log(`Saved usersettings : ${JSON.stringify(savedState)}`);
 
@@ -52,7 +54,7 @@ export const useFetchUser = <T extends UserState>(initialState: T): [T, (data: T
         data.currentIndex = await getBestIndex(data?.ranges, 'currentIndex');
         data.selectedChapter = await getBestIndex(data?.ranges, 'selectedChapter');
       }
-      writeToAsyncStorage(data, false);
+      writeToStore(data);
       // syncAsyncStorageToFirestore();
       setUserSettings(data);
     } catch (error) {

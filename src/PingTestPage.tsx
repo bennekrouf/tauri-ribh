@@ -3,9 +3,9 @@
 // const response = await fetch('http://test.similar.mayorana.ch/chapters?ranges=2-34');
 import { useState, useEffect } from 'react';
 import MainVerses from './MainVerses';
-import { Verse } from './models/Verse';
-import { supabase } from "./supabaseClient";
-m
+// import { Verse } from './models/Verse';
+import { supabase } from "./hooks/supabaseClient";
+
 const PingTestPage = () => {
   const [data, setData] = useState<any[] | null>(null);
   const [stats, setStats] = useState<any[] | null>(null);
@@ -25,21 +25,22 @@ const PingTestPage = () => {
       }
     };
 
-    fetchData();
+    // fetchData();
   }, []);
 
   useEffect(() => {
     const fetchSupa = async () => {
       let { data, error } = await supabase
-      .from("stats")
-      // .select(`username, website, avatar_url`)
-      // .eq("id", user.id)
+      .from("profiles")
+      .select(`*`)
+      .eq("email", 'mohamed.bennekrouf@gmail.com')
       // .();
-      console.log("Data : ", data);
-      console.log("Error : ", error);
+      console.log("Data : ", JSON.stringify(data));
+      // console.log("Error : ", error);
       setStats(data);
     };
-    if(!stats?.length) fetchSupa();
+    // if(!stats?.length) fetchSupa();
+    fetchSupa();
   }, []);
 
   return (
@@ -54,4 +55,3 @@ const PingTestPage = () => {
 };
 
 export default PingTestPage;
-

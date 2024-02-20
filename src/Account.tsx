@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent } from "react";
-import { supabase } from "./supabaseClient";
+import { supabase } from "./hooks/supabaseClient";
 import { AuthSession } from "@supabase/supabase-js";
 
 export default function Account({ session }: { session: AuthSession }) {

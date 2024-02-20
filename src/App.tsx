@@ -2,9 +2,9 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { AuthSession } from '@supabase/supabase-js';
-import { supabase } from './supabaseClient';
-import Auth from './Auth';
-import Account from './Account';
+import { supabase } from './hooks/supabaseClient';
+// import Auth from './Auth';
+// import Account from './Account';
 import PingTestPage from './PingTestPage'; // Import your new component
 
 function App() {

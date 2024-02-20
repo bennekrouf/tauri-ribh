@@ -1,7 +1,6 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 
 import { Logger } from 'mayo-logger';
-import { UserContext, UserContextType } from 'mayo-firebase-auth';
 
 import { useFetchUser } from './useFetchUser';
 import { loadChapters } from '../api/loadSourates';
@@ -19,13 +18,19 @@ interface SourateProviderProps {
   children: ReactNode;
 }
 
+import { useUser } from '../UserContext';
+
 // Create a provider component
 export const SourateProvider: React.FC<SourateProviderProps> = ({ children }) => {
   const [sourates, setChapters] = useState<Sourate[]>([]);
   const [isSourateLoading, setIsChapterLoading] = useState(false);
   const [userState, setPersistedState, loading] = useFetchUser(initialState);
   const [isLoading, setIsLoading] = useState(false);
-  const { user } = useContext(UserContext) as UserContextType;
+
+  const userContext = useUser();
+  if (!userContext) throw new Error("User context is not available");
+  const { user } = userContext;
+
   const [triggerFetch, setTriggerFetch] = useState(0);
 
   useEffect(() => {

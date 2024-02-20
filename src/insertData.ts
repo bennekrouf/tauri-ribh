@@ -1,4 +1,4 @@
-import { supabase } from './supabaseClient';
+import { supabase } from './hooks/supabaseClient';
 
 interface User {
   email: string;
