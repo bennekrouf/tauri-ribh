@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
 
-interface UserContextType {
+export interface UserContextType {
     user: { email: string; appId: string };
     setUser: React.Dispatch<React.SetStateAction<{ email: string; appId: string }>>;
 }

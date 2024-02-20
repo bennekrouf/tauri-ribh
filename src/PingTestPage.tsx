@@ -4,16 +4,23 @@
 import { useState, useEffect } from 'react';
 import MainVerses from './MainVerses';
 // import { Verse } from './models/Verse';
-import { supabase } from "./hooks/supabaseClient";
+// import { supabase } from "./hooks/supabaseClient";
+import { useUser } from './UserContext';
+import { loadFromStore } from './hooks/loadFromStore';
+import loadFromSupa from './hooks/loadFromSupa';
 
 const PingTestPage = () => {
   const [data, setData] = useState<any[] | null>(null);
   const [stats, setStats] = useState<any[] | null>(null);
 
+  const userContext = useUser();
+  if (!userContext) throw new Error("User context is not available");
+  const { user } = userContext;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://test.similar.mayorana.ch/similars/2?ranges=2-34');
+        const response = await fetch('http://test.similar.mayorana.ch/similars/90?ranges=90-114');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -25,20 +32,19 @@ const PingTestPage = () => {
       }
     };
 
-    // fetchData();
+    if(user) fetchData();
   }, []);
 
   useEffect(() => {
     const fetchSupa = async () => {
-      let { data, error } = await supabase
-      .from("profiles")
-      .select(`*`)
-      .eq("email", 'mohamed.bennekrouf@gmail.com')
-      // .();
-      console.log("Data : ", JSON.stringify(data));
+      // const data1 = await loadFromStore(user);
+      const data2 = await loadFromSupa(user);
+
+      // console.log("Data Store: ", JSON.stringify(data1));
+      console.log("Data Supa: ", JSON.stringify(data2));
       // console.log("Error : ", error);
-      setStats(data);
-    };
+      setStats(data2);
+    1};
     // if(!stats?.length) fetchSupa();
     fetchSupa();
   }, []);

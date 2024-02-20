@@ -1,22 +1,24 @@
 import { supabase } from "./supabaseClient";
-import { useUser } from "../UserContext";
+import { Logger } from 'mayo-logger';
+import { UserContextType } from "../UserContext";
 
-async function loadFromSupa() {
-    const userContext = useUser();
-    if (!userContext) throw new Error("User context is not available");
-    const { user } = userContext;
-
+async function loadFromSupa(user: UserContextType['user']) {
     try {
+        Logger.info("Fetching data from Supabase...", user.email, { tag: 'loadFromSupa' });
         const { data, error } = await supabase
             .from('profiles')
             .select('*')
             .eq('email', user.email);
 
-        if (error) throw error;
+        if (error) {
+            Logger.error("Error fetching data from Supabase", error, { tag: 'loadFromSupa' });
+            throw error;
+        }
 
+        Logger.info("Data fetched from Supabase", data, { tag: 'loadFromSupa' });
         return data;
     } catch (error) {
-        console.error('Error fetching data from Supabase:', error);
+        Logger.error('Error fetching data from Supabase:', error, { tag: 'loadFromSupa' });
         return null; // Return null or an appropriate error message
     }
 }

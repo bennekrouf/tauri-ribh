@@ -3544,6 +3544,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "tafsil"
+version = "0.0.1"
+dependencies = [
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+ "tauri-plugin-oauth",
+ "tauri-plugin-shell",
+ "tauri-plugin-store",
+]
+
+[[package]]
 name = "tao"
 version = "0.25.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3774,19 +3787,6 @@ dependencies = [
  "tauri",
  "tauri-plugin",
  "thiserror",
-]
-
-[[package]]
-name = "tauri-ribh"
-version = "0.0.1"
-dependencies = [
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
- "tauri-plugin-oauth",
- "tauri-plugin-shell",
- "tauri-plugin-store",
 ]
 
 [[package]]

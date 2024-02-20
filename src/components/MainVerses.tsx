@@ -2,7 +2,6 @@ import React from 'react';
 import FormattedVerse from './FormattedVerse';
 import { VerseListProps } from '../models/VerseListProps';
 
-// Assuming VerseListProps is correctly defined for web
 const MainVerses: React.FC<VerseListProps> = ({verses}) => (
     <div style={styles.versesContainer}>
     {verses.map(({ ungrouped_text, verse_no }, index) => (

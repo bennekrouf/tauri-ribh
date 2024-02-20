@@ -1,3 +1,3 @@
-package com.tauri.tauri_ribh
+package com.tauri.tafsil
 
 class MainActivity : TauriActivity()
