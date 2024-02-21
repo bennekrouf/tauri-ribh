@@ -8,9 +8,13 @@ import MainVerses from './MainVerses';
 import { useUser } from './UserContext';
 import { loadFromStore } from './hooks/loadFromStore';
 import loadFromSupa from './hooks/loadFromSupa';
+import { LessonListProps } from './models/LessonListProps';
+// import SwipeableViews from 'react-swipeable-views';
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import 'pure-react-carousel/dist/react-carousel.es.css';
 
 const PingTestPage = () => {
-  const [data, setData] = useState<any[] | null>(null);
+  const [data, setData] = useState<LessonListProps[] | null>(null);
   const [stats, setStats] = useState<any[] | null>(null);
 
   const userContext = useUser();
@@ -24,7 +28,7 @@ const PingTestPage = () => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const jsonData: any[] = await response.json();
+        const jsonData: LessonListProps[] = await response.json();
         // console.log('Ping response:', JSON.stringify(jsonData));
         setData(jsonData);
       } catch (error) {
@@ -46,17 +50,37 @@ const PingTestPage = () => {
       setStats(data2);
     1};
     // if(!stats?.length) fetchSupa();
-    fetchSupa();
+    // fetchSupa();
   }, []);
 
+  // return (
+  //   <div>
+  //     {data ? (
+  //       <MainVerses lessonLists={data} />
+  //       ) : (
+  //       <h2>Loading...</h2>
+  //     )}
+  //   </div>
+  // );
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleChangeIndex = (index: number) => {
+    setActiveIndex(index);
+  };
+
   return (
-    <div>
-      {data ? (
-        <MainVerses similars={data} kalima={data[0]?.kalima} />
-        ) : (
-        <h2>Loading...</h2>
-      )}
-    </div>
+    <CarouselProvider
+      naturalSlideWidth={100}
+      naturalSlideHeight={125}
+      totalSlides={3}
+    >
+      <Slider>
+        <Slide index={0}>I am the first Slide.</Slide>
+        <Slide index={1}>I am the second Slide.</Slide>
+        <Slide index={2}>I am the third Slide.</Slide>
+      </Slider>
+    </CarouselProvider>
   );
 };
 

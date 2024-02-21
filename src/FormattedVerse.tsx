@@ -7,16 +7,16 @@ interface FormattedVerseProps {
 
 
 const FormattedVerse: React.FC<FormattedVerseProps> = ({ ungroupedText, isOpposite }) => {
-  console.log("ungroupedText :", ungroupedText);
+  // console.log("ungroupedText :", JSON.stringify(ungroupedText));
     const discriminantStyle = isOpposite ? "differentTextWrong" : "differentTextRight";
   
     return (
       <div style={styles.verseStyle}>
-        {/* {ungroupedText?.pre} */}
+        {ungroupedText?.pre}
         <span style={styles[discriminantStyle]}>
-          {/* {ungroupedText.discriminant} */}
+          {ungroupedText.discriminant}
         </span>
-        {/* {ungroupedText.post} */}
+        {ungroupedText.post}
       </div>
     );
   }

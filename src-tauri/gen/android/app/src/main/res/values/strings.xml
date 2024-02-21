@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Tafseel Quran</string>
+    <string name="app_name">Tafsil Quran</string>
+    <string name="main_activity_title">Main Activity Title</string>
 </resources>

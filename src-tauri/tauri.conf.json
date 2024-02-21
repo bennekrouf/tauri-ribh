@@ -1,5 +1,5 @@
 {
-  "productName": "tafseel",
+  "productName": "tafsil",
   "version": "0.1.0",
   "identifier": "com.tauri.dev",
   "$schema": "../../core/tauri-config-schema/schema.json",
@@ -15,7 +15,7 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "tafseel",
+        "title": "tafsil",
         "width": 800,
         "height": 600
       }

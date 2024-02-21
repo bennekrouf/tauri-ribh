@@ -8,7 +8,7 @@ repository = ""
 edition = "2021"
 
 [lib]
-name = "tafseel_lib"
+name = "tafsil_lib"
 path = "src/lib.rs"
 crate-type = ["staticlib", "cdylib", "rlib"]
 

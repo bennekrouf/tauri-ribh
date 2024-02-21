@@ -1,27 +1,32 @@
-// import Text from 'react';
 import FormattedVerse from './FormattedVerse';
+import { LessonListProps } from './models/LessonListProps';
 import { Verse } from './models/Verse';
 
-interface MainVersesProps {
-  similars: any[];
-  kalima: string;
+interface LessonList {
+  lessonLists: LessonListProps[];
 }
 
-const MainVerses: React.FC<MainVersesProps> = ({ similars, kalima }) => {
-  console.log("Kalima passed :", JSON.stringify(similars));
+const MainVerses: React.FC<LessonList> = ({ lessonLists }) => {
+  console.log("Kalima passed :", Object.keys(lessonLists[0]));
   return (
-    <div style={styles.versesContainer}>
-      <h2 style={styles.headerStyle}>{kalima}</h2>
-        {similars?.map((similar:any, index:number) => ( 
-          <div key={index} style={styles.card}>
-            <FormattedVerse isOpposite={false} ungroupedText={similar} />
-            <div style={styles.ayahContainer}>
-              <span style={styles.ayahText}>[{similar.verse_no}]</span>
-            </div>
+    <div>
+      {lessonLists.map((lessonList:LessonListProps, lessonListIndex:number) => (
+        <div key={lessonListIndex}>
+          <h2 style={styles.headerStyle}>{lessonList.kalima}</h2>
+          <div style={styles.versesContainer}>
+            {lessonList.verses?.map((verse: Verse, index: number) => (
+              <div key={index} style={styles.card}>
+                <FormattedVerse isOpposite={false} ungroupedText={verse.ungrouped_text} />
+                <div style={styles.ayahContainer}>
+                  <span style={styles.ayahText}>[{verse.verse_no}]</span>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+      ))}
     </div>
-  )
+  );
 };
 
 const styles: { [key: string]: React.CSSProperties } = {

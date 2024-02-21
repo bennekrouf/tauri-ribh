@@ -11,7 +11,11 @@ interface ScrollableSwipablePageProps {
 
   const Lesson: React.FC<ScrollableSwipablePageProps> = ({ selectedChapter, lesson, isLoading, error }) => {
     const [activeIndex, setActiveIndex] = useState(0);
-  useCurrentScreen();
+    useCurrentScreen();
+
+    const handleChangeIndex = (index: number) => {
+      setActiveIndex(index);
+    };
   
   // if (isLoading) {
   //   return (
@@ -21,28 +25,43 @@ interface ScrollableSwipablePageProps {
   //   );
   // }
 
+
   return (
     <div>
-      <div style={styles.tabs}>
-        {lesson?.map((content, index) => (
-          <div
-            key={index}
-            style={{ ...styles.tab, ...(activeIndex === index && styles.activeTab) }}
-            onClick={() => setActiveIndex(index)}
-          >
-            Tab {index + 1}
-          </div>
-        ))}
-      </div>
-      <SwipeableViews index={activeIndex} onChangeIndex={setActiveIndex}>
-        {lesson?.map((content, index) => (
-          <div key={index} style={styles.tabContent}>
-            Content for Tab {index + 1}
-          </div>
-        ))}
+      {/* Display the current index */}
+      <h2>Current Index: {activeIndex}</h2>
+
+      {/* Swipeable Views Component */}
+      <SwipeableViews index={activeIndex} onChangeIndex={handleChangeIndex}>
+        <div style={{ height: 200, backgroundColor: 'red' }}>Page 1</div>
+        <div style={{ height: 200, backgroundColor: 'blue' }}>Page 2</div>
+        <div style={{ height: 200, backgroundColor: 'green' }}>Page 3</div>
       </SwipeableViews>
     </div>
   );
+
+  // return (
+  //   <div>
+  //     <div style={styles.tabs}>
+  //       {lesson?.map((content, index) => (
+  //         <div
+  //           key={index}
+  //           style={{ ...styles.tab, ...(activeIndex === index && styles.activeTab) }}
+  //           onClick={() => setActiveIndex(index)}
+  //         >
+  //           Tab {index + 1}
+  //         </div>
+  //       ))}
+  //     </div>
+  //     <SwipeableViews index={activeIndex} onChangeIndex={setActiveIndex}>
+  //       {lesson?.map((content, index) => (
+  //         <div key={index} style={styles.tabContent}>
+  //           Content for Tab {index + 1}
+  //         </div>
+  //       ))}
+  //     </SwipeableViews>
+  //   </div>
+  // );
 };
 
 export default Lesson;
