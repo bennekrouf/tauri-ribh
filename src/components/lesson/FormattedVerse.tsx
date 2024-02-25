@@ -1,14 +1,15 @@
 import React from 'react';
-import { UngroupedText } from '../models/UngroupedText';
+import { UngroupedText } from '../../models/UngroupedText';
 
 function FormattedVerse({ ungroupedText, isOpposite }: {ungroupedText: UngroupedText, isOpposite: boolean}) {
   const discriminantStyle = isOpposite ? styles.differentTextWrong : styles.differentTextRight;
-
+  console.log("FormattedVerse ungroupedText :", ungroupedText);
+  
   return (
     <div style={styles.verseStyle}>
-      <span>{ungroupedText.pre}</span>
-      <span style={discriminantStyle}>{ungroupedText.discriminant}</span>
-      <span>{ungroupedText.post}</span>
+      <span>{ungroupedText?.pre}</span>
+      <span style={discriminantStyle}>{ungroupedText?.discriminant}</span>
+      <span>{ungroupedText?.post}</span>
     </div>
   );
 }

@@ -1,8 +1,9 @@
 import { supabase } from "./supabaseClient";
 import { Logger } from 'mayo-logger';
-import { UserContextType } from "../UserContext";
+import { useVerifiedUser } from "./useVerifiedUser";
 
-async function loadFromSupa(user: UserContextType['user']) {
+async function loadFromSupa() {
+    const user = useVerifiedUser();
     try {
         Logger.info("Fetching data from Supabase...", user.email, { tag: 'loadFromSupa' });
         const { data, error } = await supabase

@@ -2,7 +2,7 @@
 // const response = await fetch('http://test.abjad.mayorana.ch/knowledge-entries?level=2');
 // const response = await fetch('http://test.similar.mayorana.ch/chapters?ranges=2-34');
 import { useState, useEffect } from 'react';
-import MainVerses from './MainVerses';
+import MainVerses from './components/lesson/ScrollableTab/MainVerses';
 // import { Verse } from './models/Verse';
 // import { supabase } from "./hooks/supabaseClient";
 import { useUser } from './UserContext';
@@ -10,7 +10,6 @@ import { loadFromStore } from './hooks/loadFromStore';
 import loadFromSupa from './hooks/loadFromSupa';
 import { LessonListProps } from './models/LessonListProps';
 // import SwipeableViews from 'react-swipeable-views';
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 
 const PingTestPage = () => {
@@ -53,35 +52,22 @@ const PingTestPage = () => {
     // fetchSupa();
   }, []);
 
-  // return (
-  //   <div>
-  //     {data ? (
-  //       <MainVerses lessonLists={data} />
-  //       ) : (
-  //       <h2>Loading...</h2>
-  //     )}
-  //   </div>
-  // );
-
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const handleChangeIndex = (index: number) => {
-    setActiveIndex(index);
-  };
-
   return (
-    <CarouselProvider
-      naturalSlideWidth={100}
-      naturalSlideHeight={125}
-      totalSlides={3}
-    >
-      <Slider>
-        <Slide index={0}>I am the first Slide.</Slide>
-        <Slide index={1}>I am the second Slide.</Slide>
-        <Slide index={2}>I am the third Slide.</Slide>
-      </Slider>
-    </CarouselProvider>
+    <div>
+      {data ? (
+      <MainVerses key="mainVerses" verses={data} isOpposite={false} />
+      ) : (
+        <h2>Loading...</h2>
+      )}
+    </div>
   );
+
+  // const [activeIndex, setActiveIndex] = useState(0);
+
+  // const handleChangeIndex = (index: number) => {
+  //   setActiveIndex(index);
+  // };
+
 };
 
 export default PingTestPage;

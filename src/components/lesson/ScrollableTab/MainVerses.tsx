@@ -1,9 +1,9 @@
 import React from 'react';
-import FormattedVerse from './FormattedVerse';
-import { VerseListProps } from '../models/VerseListProps';
+import FormattedVerse from '../FormattedVerse';
+import { VerseListProps } from '../../../models/VerseListProps';
 
 const MainVerses: React.FC<VerseListProps> = ({verses}) => (
-    <div style={styles.versesContainer}>
+  <div style={styles.versesContainer}>
     {verses.map(({ ungrouped_text, verse_no }, index) => (
       <div key={index} style={styles.card}>
         <div style={styles.cardContent}>

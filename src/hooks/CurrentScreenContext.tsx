@@ -8,7 +8,7 @@ interface CurrentScreenContextType {
 }
 
 // Create the context with an initial value that matches the defined type
-const CurrentScreenContext = createContext<CurrentScreenContextType>({
+export const CurrentScreenContext = createContext<CurrentScreenContextType>({
   currentScreen: '',
   // Provide a dummy function with the correct signature as the initial value
   setCurrentScreen: () => undefined, // or use a more appropriate noop function if needed
@@ -30,3 +30,5 @@ export const CurrentScreenProvider: React.FC<CurrentScreenProviderProps> = ({ ch
 
 // Custom hook to use the context
 export const useCurrentScreenContext = () => useContext(CurrentScreenContext);
+
+export default CurrentScreenProvider;
